@@ -19,31 +19,29 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#counter">About us</a>
+        <li class="nav-item ps-4 pe-4">
+          <a class="nav-link" aria-current="page" href="/">Home</a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item ps-4 pe-4">
           <a class="nav-link " href="/foods/1">Foods</a>
         </li>
-        <li class="nav-item">
+
+        <li class="nav-item ps-4 pe-4">
           <a class="nav-link " data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i
-              class="fas fa-shopping-basket ps-3"></i><small class="cart-num"></small></a>
+              class="fas fa-shopping-cart"></i></a>
         </li>
 
 
         {{#if loginUser}}
-        <li class="nav-item"></li>
+        <li class="nav-item ps-4 pe-4"></li>
         <a class="nav-link " href="/dashboard">{{loginUser.name}}</a>
         </li>
         {{else}}
-        <li class="nav-item">
+        <li class="nav-item ps-4 pe-4">
           <a class="nav-link " href="/register">Register</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item ps-4 pe-4">
           <a class="nav-link " href="/login">Login</a>
         </li>
         {{/if}}
@@ -66,7 +64,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel"><img style="width:70px;height:40px" src="/static/image/logo.png" alt=""> Your Food Basket.</h5>
+        <h5 class="modal-title" id="staticBackdropLabel"><img style="width:70px;height:40px" src="/static/image/logo.png" alt=""> Your Food Cart.</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body cart-body">
@@ -76,7 +74,7 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <a href="/user/orderFood" type="button" class="btn btn-primary checkout-btn ">Check out food</a>
         {{else}}
-        <small class="primary-color">please login for check out food</small>
+        <small class="primary-color">Please login to check out food</small>
         {{/if}}
       </div>
     </div>

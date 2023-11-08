@@ -4,10 +4,12 @@ const session = require('express-session')
 const route = express.Router();
 const User = require('../modul/user')
 const dish = require("../modul/dish");
+const dishSample = require("../modul/dishesSample.json");
 const order = require('../modul/order')
 const { __express } = require('hbs');
 const { restart } = require('nodemon');
-const fs = require('fs')
+const fs = require('fs');
+const { count } = require('console');
 
 route.get("/", (req, res) => {
     const loginUser = req.session.loginUser;
@@ -34,12 +36,14 @@ route.get("/foods/:page", async (req, res) => {
     let page = req.params.page;
     if (page)
         currentPage = page;
-    const total = 6;
-    const start = (currentPage - 1) * total;
-    const foods = await dish.find().skip(start).limit(total);
-    const count = Math.ceil(await dish.find().countDocuments() / total);
+    // const total = 6;
+    // const start = (currentPage - 1) * total;
+    // const foods = await dish.find().skip(start).limit(total);
+    // const count = Math.ceil(await dish.find().countDocuments() / total);
 
-    console.log(count + " :=> " + foods);
+    // console.log(count + " :=> " + foods);
+    const foods = dishSample;
+    const count = foods.length;
     res.render("showDishes", {
         loginUser: loginUser,
         foods: foods,
