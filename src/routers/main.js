@@ -36,14 +36,14 @@ route.get("/foods/:page", async (req, res) => {
     let page = req.params.page;
     if (page)
         currentPage = page;
-    // const total = 6;
-    // const start = (currentPage - 1) * total;
-    // const foods = await dish.find().skip(start).limit(total);
-    // const count = Math.ceil(await dish.find().countDocuments() / total);
+    const total = 6;
+    const start = (currentPage - 1) * total;
+    const foods = await dish.find().skip(start).limit(total);
+    const count = Math.ceil(await dish.find().countDocuments() / total);
 
-    // console.log(count + " :=> " + foods);
-    const foods = dishSample;
-    const count = foods.length;
+    console.log(count + " :=> " + foods);
+    // const foods = dishSample;
+    // const count = foods.length;
     res.render("showDishes", {
         loginUser: loginUser,
         foods: foods,
@@ -170,7 +170,7 @@ route.post('/saveDish', async (req, res) => {
     req.body.photo = imageName;
     const data = await dish.create(req.body)
 
-    photo.mv("D:/document/projects/Restorent/public/dishImage/" + imageName);
+    photo.mv("/Users/macbookpro/BKFood/public/dishImage/" + imageName);
     if (data) {
         console.log("dish save")
         res.render("addNewDish", {
@@ -323,7 +323,7 @@ route.post("/admin/saveEditDish/:id", async (req, res) => {
         else {
             console.log("photo to is selected ols photo is " + req.body.tempImage)
             try {
-                fs.unlinkSync('D:/document/projects/Restorent/public/dishImage/' + req.body.tempImage)
+                fs.unlinkSync('/Users/macbookpro/BKFood/public/dishImage/' + req.body.tempImage)
                 console.log('old file is deleted')
             } catch (e) {
                 console.log(e)
@@ -331,7 +331,7 @@ route.post("/admin/saveEditDish/:id", async (req, res) => {
             const { photo } = req.files
             const imageName=Math.random()+photo.name;
             req.body.photo =imageName;
-            photo.mv("D:/document/projects/Restorent/public/dishImage/" + imageName);
+            photo.mv("/Users/macbookpro/BKFood/public/dishImage/" + imageName);
             console.log(req.body.photo)
         }
 
